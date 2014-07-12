@@ -139,12 +139,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0152e6c9da34b73a86cf8b63b544e0, type: 3}
+  m_Script: {fileID: 797943208, guid: 4b3ac1b7518206144810fb127d533e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  jumpPower: 1000
-  backwardForce: {x: -4.5, y: 5.4000001}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -156,7 +153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5153fce4e03b24f98ae7fedc8e09fb79, type: 3}
+  m_Script: {fileID: 616749771, guid: 4b3ac1b7518206144810fb127d533e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageVoice: {fileID: 8300000, guid: 668a107660fa54fe98e03b698a09aa49, type: 3}

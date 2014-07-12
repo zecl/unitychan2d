@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Assembly-FSharp-vs", "Assembly-FSharp-vs.fsproj", "{DA14DD3B-3933-495C-8F04-088544BDB1CF}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Assembly-FSharp-Editor-vs", "Assembly-FSharp-Editor-vs.fsproj", "{6AC26D99-68A7-49B3-B429-27FE860B1D1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA14DD3B-3933-495C-8F04-088544BDB1CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA14DD3B-3933-495C-8F04-088544BDB1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA14DD3B-3933-495C-8F04-088544BDB1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA14DD3B-3933-495C-8F04-088544BDB1CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AC26D99-68A7-49B3-B429-27FE860B1D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AC26D99-68A7-49B3-B429-27FE860B1D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AC26D99-68A7-49B3-B429-27FE860B1D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AC26D99-68A7-49B3-B429-27FE860B1D1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

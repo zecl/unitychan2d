@@ -211,10 +211,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbf7fcf2a5cfb4e55a5b4b7ae92b20aa, type: 3}
+  m_Script: {fileID: -206266333, guid: 4b3ac1b7518206144810fb127d533e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   breakClip: {fileID: 8300000, guid: a11d77af3c0be4eb684a4cf9f47ea146, type: 3}
+  force: {x: 250, y: 1000}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.30301976, y: -5.95923615, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6acb14db838b4eecaae0aacfa02e79b, type: 3}
+  m_Script: {fileID: -706904122, guid: 4b3ac1b7518206144810fb127d533e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   getCoin: {fileID: 8300000, guid: 71ccb8d2b0fe9404f8cc4f59bfaafab6, type: 3}
@@ -85,9 +85,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 3534837493
   m_Sprite: {fileID: 21300000, guid: 82f6479c556d14828b9d953594ab4fd0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

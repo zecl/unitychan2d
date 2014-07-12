@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{536ad8b6-cd5a-4964-9b91-4a46cefde42e}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AssemblyFSharp</RootNamespace>
+    <AssemblyName>AssemblyFSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <OutputPath>C:\Code\Unity\unitychan2d-master\Assets\Assembly-FSharp\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget />
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>C:\Code\Unity\unitychan2d-master\Assets\Assembly-FSharp\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <Tailcalls>true</Tailcalls>
+    <ConsolePause>False</ConsolePause>
+    <PlatformTarget />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
+  <ItemGroup>
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\AudioSourceController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\BlockController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\BrokenBlockController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\CameraController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\CoinController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\Demo.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\PointController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\SceneNameAttribute.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\UnityChan2DController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\IntroCameraController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\LoadingController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\Loop.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\StartController.fs" />
+    <Compile Include="Assets\UnityChan2D\Demo\FSharpScripts\TimeController.fs" />
+  </ItemGroup>
+</Project>
