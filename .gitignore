@@ -30,7 +30,7 @@ nuget/*.nupkg
 *.dtd
 
 # Unity
-#/*.csproj
+/*.csproj
 #/*.sln
 /*.unityproj
 /*.userprefs
