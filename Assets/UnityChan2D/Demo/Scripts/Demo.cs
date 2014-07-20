@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UniRx;
 
 [RequireComponent(typeof(UnityChan2DController), typeof(AudioSource))]
-public class Demo : MonoBehaviour
+public class Demo : ObservableMonoBehaviour
 {
     [SerializeField]
     private AudioClip damageVoice;
@@ -17,8 +18,9 @@ public class Demo : MonoBehaviour
 
     private AudioSource audioSource;
 
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
         audioSource = GetComponent<AudioSource>();
     }
 

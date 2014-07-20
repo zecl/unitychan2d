@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniRx;
 
 [RequireComponent(typeof(AudioSource))]
-public class StartController : MonoBehaviour
+public class StartController : ObservableMonoBehaviour
 {
     [SceneName]
     public string nextLevel;
@@ -10,12 +11,15 @@ public class StartController : MonoBehaviour
     [SerializeField]
     private KeyCode enter = KeyCode.X;
 
-    void Update()
+    public override void Awake()
     {
-        if (Input.GetKeyDown(enter))
-        {
-            StartCoroutine(LoadStage());
-        }
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetKeyDown(enter))
+            .Subscribe(x => {
+                StartCoroutine(LoadStage());
+            });
+
+        base.Awake();
     }
 
     private IEnumerator LoadStage()

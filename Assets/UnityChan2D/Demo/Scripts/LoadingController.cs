@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniRx;
 
-public class LoadingController : MonoBehaviour
+public class LoadingController : ObservableMonoBehaviour
 {
     [SceneName]
     public string nextLevel;
 
-    IEnumerator Start()
+    new public IEnumerator Start()
     {
         yield return new WaitForSeconds(3);
 

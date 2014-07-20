@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UniRx;
 
-public class CoinController : MonoBehaviour
+public class CoinController : ObservableMonoBehaviour
 {
     public AudioClip getCoin;
-    void OnTriggerEnter2D(Collider2D other)
+
+    public override void Awake()
     {
-        if (other.tag == "Player")
-        {
-            PointController.instance.AddCoin();
-            AudioSourceController.instance.PlayOneShot(getCoin);
-            Destroy(gameObject);
-        }
+        this.OnTriggerEnter2DAsObservable()
+            .Where(other => other.tag == "Player")
+            .Subscribe(other =>
+            {
+                PointController.instance.AddCoin();
+                AudioSourceController.instance.PlayOneShot(getCoin);
+                Destroy(gameObject);
+            });
+
+        base.Awake();
     }
 }

@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UniRx;
 using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioSourceController : MonoBehaviour
+public class AudioSourceController : ObservableMonoBehaviour
 {
     private static AudioSourceController m_instance;
     public static AudioSourceController instance

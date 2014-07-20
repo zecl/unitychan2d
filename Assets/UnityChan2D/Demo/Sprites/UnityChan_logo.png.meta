@@ -1,6 +1,8 @@
 fileFormatVersion: 2
 guid: 4f002bf1aa1444ef689a878337c3d985
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: UnityChan_logo
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

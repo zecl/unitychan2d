@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniRx;
+using System.Threading;
 
 [RequireComponent(typeof(AudioSource))]
-public class IntroCameraController : MonoBehaviour
+public class IntroCameraController : ObservableMonoBehaviour
 {
     public Transform target;
 
@@ -10,20 +12,30 @@ public class IntroCameraController : MonoBehaviour
 
     [SceneName]
     public string nextLevel;
+    private bool next = false;
 
-    IEnumerator Start()
+    public override void Awake()
     {
-        pos = transform.position;
+        this.UpdateAsObservable()
+            .Subscribe(_ =>
+                {
+                    float newPosition = Mathf.SmoothStep(pos.x, target.position.x, Time.timeSinceLevelLoad / audio.clip.length);
+                    transform.position = new Vector3(newPosition, pos.y, pos.z);
+                });
 
-        yield return new WaitForSeconds(audio.clip.length + 1);
+        this.UpdateAsObservable()
+            .Where(_ => next)
+            .Subscribe(_ => Application.LoadLevel(nextLevel));
 
-        Application.LoadLevel(nextLevel);
-    }
+        var interval = audio.clip.length + 1;
+        var wait = Observable.Start(() => Thread.Sleep(System.TimeSpan.FromSeconds(interval)));
+        this.StartAsObservable()
+            .Subscribe(_ => 
+            {
+                pos = transform.position;
+                wait.Subscribe(x => next = true);
+            });
 
-    void Update()
-    {
-        float newPosition = Mathf.SmoothStep(pos.x, target.position.x, Time.timeSinceLevelLoad / audio.clip.length);
-
-        transform.position = new Vector3(newPosition, pos.y, pos.z);
+        base.Awake();
     }
 }

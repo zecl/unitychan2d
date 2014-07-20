@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UniRx;
+
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(BoxCollider2D))]
-public class UnityChan2DController : MonoBehaviour
+public class UnityChan2DController : ObservableMonoBehaviour
 {
     public float maxSpeed = 10f;
     public float jumpPower = 1000f;
@@ -17,8 +19,9 @@ public class UnityChan2DController : MonoBehaviour
 
     private State m_state = State.Normal;
 
-    void Reset()
+    public override void Reset()
     {
+        base.Reset();
         Awake();
 
         // UnityChan2DController
@@ -42,21 +45,41 @@ public class UnityChan2DController : MonoBehaviour
         m_animator.applyRootMotion = false;
     }
 
-    void Awake()
+    public override void Awake()
     {
+        this.UpdateAsObservable()
+              .Where(_ => m_state != State.Damaged)
+              .Subscribe(_ =>
+              {
+                    float x = Input.GetAxis("Horizontal");
+                    bool jump = Input.GetButtonDown("Jump");
+                    Move(x, jump);
+              });
+
+        this.FixedUpdateAsObservable()
+            .Subscribe(_ =>
+                {
+                    Vector2 pos = transform.position;
+                    Vector2 groundCheck = new Vector2(pos.x, pos.y - (m_centerY * transform.localScale.y));
+                    Vector2 groundArea = new Vector2(m_boxcollier2D.size.x * 0.49f, 0.05f);
+
+                    m_isGround = Physics2D.OverlapArea(groundCheck + groundArea, groundCheck - groundArea, whatIsGround);
+                    m_animator.SetBool("isGround", m_isGround);
+                });
+
+        this.OnTriggerStay2DAsObservable()
+            .Where(other => other.tag == "DamageObject" && m_state == State.Normal)
+            .Subscribe(other =>
+            {
+                m_state = State.Damaged;
+                StartCoroutine(INTERNAL_OnDamage());
+            });
+
+        base.Awake();
         m_animator = GetComponent<Animator>();
         m_boxcollier2D = GetComponent<BoxCollider2D>();
         m_rigidbody2D = GetComponent<Rigidbody2D>();
-    }
 
-    void Update()
-    {
-        if (m_state != State.Damaged)
-        {
-            float x = Input.GetAxis("Horizontal");
-            bool jump = Input.GetButtonDown("Jump");
-            Move(x, jump);
-        }
     }
 
     void Move(float move, bool jump)
@@ -78,25 +101,6 @@ public class UnityChan2DController : MonoBehaviour
             m_animator.SetTrigger("Jump");
             SendMessage("Jump", SendMessageOptions.DontRequireReceiver);
             m_rigidbody2D.AddForce(Vector2.up * jumpPower);
-        }
-    }
-
-    void FixedUpdate()
-    {
-        Vector2 pos = transform.position;
-        Vector2 groundCheck = new Vector2(pos.x, pos.y - (m_centerY * transform.localScale.y));
-        Vector2 groundArea = new Vector2(m_boxcollier2D.size.x * 0.49f, 0.05f);
-
-        m_isGround = Physics2D.OverlapArea(groundCheck + groundArea, groundCheck - groundArea, whatIsGround);
-        m_animator.SetBool("isGround", m_isGround);
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "DamageObject" && m_state == State.Normal)
-        {
-            m_state = State.Damaged;
-            StartCoroutine(INTERNAL_OnDamage());
         }
     }
 

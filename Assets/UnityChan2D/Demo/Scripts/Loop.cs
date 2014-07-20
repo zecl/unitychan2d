@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
+using UniRx;
 
-public class Loop : MonoBehaviour
+public class Loop : ObservableMonoBehaviour
 {
     public Collider2D to;
     public float offsetX;
-    void OnTriggerEnter2D(Collider2D other)
+
+    public override void Awake()
     {
-        if (other.tag != "Player") return;
+        this.OnTriggerEnter2DAsObservable()
+            .Where(other => other.tag != "Player")
+            .Subscribe(other =>
+            {
+                var pos = to.transform.position;
+                other.transform.position = new Vector2(pos.x + offsetX, other.transform.position.y);
+            });
 
-        var pos = to.transform.position;
-
-        other.transform.position = new Vector2(pos.x + offsetX, other.transform.position.y);
+        base.Awake();
     }
 }

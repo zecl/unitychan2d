@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniRx;
 
-public class TimeController : MonoBehaviour
+public class TimeController : ObservableMonoBehaviour
 {
     public int time;
     [SceneName]
@@ -9,25 +10,28 @@ public class TimeController : MonoBehaviour
 
     public GUIText timer;
 
-   
-
-    void Update()
+    public override void Awake()
     {
-        int remainingTime = time - Mathf.FloorToInt(Time.timeSinceLevelLoad * 2.5f);
+        this.UpdateAsObservable()
+            .Subscribe(_ => {
+                int remainingTime = time - Mathf.FloorToInt(Time.timeSinceLevelLoad * 2.5f);
 
-        if (0 <= remainingTime)
-        {
-            timer.text = remainingTime.ToString("000");
-        }
-        else
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player)
-            {
-                StartCoroutine(LoadNextLevel());
-                enabled = false;
-            }
-        }
+                if (0 <= remainingTime)
+                {
+                    timer.text = remainingTime.ToString("000");
+                }
+                else
+                {
+                    GameObject player = GameObject.FindGameObjectWithTag("Player");
+                    if (player)
+                    {
+                        StartCoroutine(LoadNextLevel());
+                        enabled = false;
+                    }
+                }
+            });
+
+        base.Awake();
     }
 
     private IEnumerator LoadNextLevel()

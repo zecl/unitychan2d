@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine;
+using UniRx;
 
-public class PointController : MonoBehaviour
+public class PointController : ObservableMonoBehaviour
 {
 
     public GUIText total;
